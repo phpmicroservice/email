@@ -1,0 +1,6 @@
+{
+  "require": {
+    "phpmicroservice/pms-frame": "dev-master",
+    "rainwsy/aliyundm": "dev-master"
+  }
+}
