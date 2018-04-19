@@ -4,4 +4,5 @@
 .vscode/
 .cache/
 vendor/
+.DS_Store
 composer.lock
