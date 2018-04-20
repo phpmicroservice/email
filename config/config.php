@@ -13,6 +13,6 @@ return [
     'codeUpdata' => [
         '/app/',
         '/start/',
-        '/tool/'
+        '/vendor/phpmicroservice/pms-frame/',
     ]
 ];

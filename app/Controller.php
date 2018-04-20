@@ -2,6 +2,7 @@
 
 namespace app;
 
+use pms\Dispatcher;
 use pms\Validation\Message\Group;
 
 
@@ -34,9 +35,10 @@ class Controller extends \pms\Controller
      * 在执行路由之前
      * @return bool|void
      */
-    public function beforeExecuteRoute($dispatch)
+    public function beforeExecuteRoute(Dispatcher $dispatch)
     {
         $key = $this->connect->accessKey;
+        output([APP_SECRET_KEY, $this->connect->getData(), $this->connect->f], 'verify_access');
         if (!verify_access($key, APP_SECRET_KEY, $this->connect->getData(), $this->connect->f)) {
             $this->connect->send_error('accessKey-error', [], 412);
             return false;

@@ -21,7 +21,7 @@ class Sende extends Controller
      */
     public function send2()
     {
-
+        $data = $this->getData();
 
         //需要设置对应的region名称，如华东1（杭州）设为cn-hangzhou，新加坡Region设为ap-southeast-1，澳洲Region设为ap-southeast-2。
         $iClientProfile = \DefaultProfile::getProfile("cn-hangzhou", get_env('aliyun_dm_accessKey'), get_env('aliyun_dm_accessSecret'));
@@ -37,12 +37,12 @@ class Sende extends Controller
         $request->setTagName(get_env('aliyun_dm_tagName'));
         $request->setReplyToAddress("true");
         $request->setFromAlias(get_env('昵称'));
-        $request->setToAddress("1514582970@qq.com");
-        $request->setSubject("测试邮件主题");
-        $request->setHtmlBody("测试邮件的征文内容,....................");
+        $request->setToAddress($data['email']);
+        $request->setSubject($data['title']);
+        $request->setHtmlBody($data['content']);
         try {
             $response = $client->getAcsResponse($request);
-            Output::info($response);
+            Output::info($response, 'send_ok');
             # 成功
             $this->connect->send_succee($response->EnvId, '发送成功');
         } catch (\ClientException  $e) {
