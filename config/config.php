@@ -12,7 +12,9 @@ return [
     'ready' => false,
     'codeUpdata' => [
         '/app/',
+        '/tool/',
         '/start/',
-        '/vendor/phpmicroservice/pms-frame/',
+        '/config/',
+        '/vendor/phpmicroservice/pms-frame/src/',
     ]
 ];
