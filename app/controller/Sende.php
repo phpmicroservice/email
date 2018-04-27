@@ -36,7 +36,7 @@ class Sende extends Controller
         $request->setAddressType(1);
         $request->setTagName(get_env('aliyun_dm_tagName'));
         $request->setReplyToAddress("true");
-        $request->setFromAlias(get_env('昵称'));
+        $request->setFromAlias(get_env('aliyun_dm_nickname', "昵称"));
         $request->setToAddress($data['email']);
         $request->setSubject($data['title']);
         $request->setHtmlBody($data['content']);
