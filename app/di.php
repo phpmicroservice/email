@@ -41,6 +41,7 @@ $di->setShared('config', function () {
     return $config;
 });
 
+
 /**
  * 本地缓存
  */
