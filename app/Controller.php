@@ -35,12 +35,11 @@ class Controller extends \pms\Controller
      * 在执行路由之前
      * @return bool|void
      */
-    public function beforeExecuteRoute(Dispatcher $dispatch)
+    public function beforeExecuteRoute(Dispatcher $dispatcher)
     {
-        $key = $this->connect->accessKey;
-        output([APP_SECRET_KEY, $this->connect->getData(), $this->connect->f], 'verify_access');
-        if (!verify_access($key, APP_SECRET_KEY, $this->connect->getData(), $this->connect->f)) {
-            $this->connect->send_error('accessKey-error', [], 412);
+        $key = $this->connect->accessKey??'';
+        if (!verify_access($key, APP_SECRET_KEY, $dispatcher->connect->getData(), $dispatcher->connect->f)) {
+            $dispatcher->connect->send_error('accessKey-error', [], 412);
             return false;
         }
     }
