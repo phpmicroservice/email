@@ -24,7 +24,7 @@ class Sende extends Controller
         $data = $this->getData();
 
         //需要设置对应的region名称，如华东1（杭州）设为cn-hangzhou，新加坡Region设为ap-southeast-1，澳洲Region设为ap-southeast-2。
-        $iClientProfile = \DefaultProfile::getProfile("cn-hangzhou", get_env('aliyun_dm_accessKey'), get_env('aliyun_dm_accessSecret'));
+        $iClientProfile = \DefaultProfile::getProfile("cn-hangzhou", \pms\get_env('aliyun_dm_accessKey'), \pms\get_env('aliyun_dm_accessSecret'));
         //新加坡或澳洲region需要设置服务器地址，华东1（杭州）不需要设置。
         //$iClientProfile::addEndpoint("ap-southeast-1","ap-southeast-1","Dm","dm.ap-southeast-1.aliyuncs.com");
         //$iClientProfile::addEndpoint("ap-southeast-2","ap-southeast-2","Dm","dm.ap-southeast-2.aliyuncs.com");
@@ -32,11 +32,11 @@ class Sende extends Controller
         $request = new Dm\SingleSendMailRequest();
         //新加坡或澳洲region需要设置SDK的版本，华东1（杭州）不需要设置。
         //$request->setVersion("2017-06-22");
-        $request->setAccountName(get_env('aliyun_dm_accountName'));
+        $request->setAccountName(\pms\get_env('aliyun_dm_accountName'));
         $request->setAddressType(1);
-        $request->setTagName(get_env('aliyun_dm_tagName'));
+        $request->setTagName(\pms\get_env('aliyun_dm_tagName'));
         $request->setReplyToAddress("true");
-        $request->setFromAlias(get_env('aliyun_dm_nickname', "昵称"));
+        $request->setFromAlias(\pms\get_env('aliyun_dm_nickname', "昵称"));
         $request->setToAddress($data['email']);
         $request->setSubject($data['title']);
         $request->setHtmlBody($data['content']);

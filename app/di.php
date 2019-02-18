@@ -72,7 +72,7 @@ $di->setShared('sessionCache', function () use ($di) {
             "lifetime" => 172800,
         ]
     );
-    output($di['config']->cache, 'gCache');
+    \pms\output($di['config']->cache, 'gCache');
     $op = [
         "host" => getenv('SESSION_CACHE_HOST'),
         "port" => getenv('SESSION_CACHE_PORT'),

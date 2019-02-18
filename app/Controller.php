@@ -38,7 +38,7 @@ class Controller extends \pms\Controller
     public function beforeExecuteRoute(Dispatcher $dispatcher)
     {
         $key = $this->connect->accessKey??'';
-        if (!verify_access($key, APP_SECRET_KEY, $dispatcher->connect->getData(), $dispatcher->connect->f)) {
+        if (!\pms\verify_access($key, APP_SECRET_KEY, $dispatcher->connect->getData(), $dispatcher->connect->f)) {
             $dispatcher->connect->send_error('accessKey-error', [], 412);
             return false;
         }
